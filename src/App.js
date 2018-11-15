@@ -10,28 +10,30 @@ class App extends Component {
     track: 0
   }
 
-  // trackCompleted = () => {
-  //   let acc = 0;
-  //   this.state.list.forEach((element) => {
-  //     if(element.status)  {
-  //       acc++
-  //     }
-  //   });
+  trackCompleted = (state) => {
+    let acc = 0;
+    state.list.forEach((element) => {
+      if(element.status)  {
+        acc++
+      }
+    });
 
-  //   this.setState( { track: acc })
-  // }
+    state.track = acc
+    return state
+  }
 
   handleAddTask = (data) => {
-      this.setState(prevState => ({ 
-        list: [...prevState.list, data]
-      }))
-     // this.trackCompleted()
+    let state = this.state
+    state.list = [...state.list, data]
+    state = this.trackCompleted(state)
+    this.setState({ state })
   }
 
   handleDeleteTask = (id) => {
-    let newList = this.state.list.filter(elem => elem.id !== id)
-    this.setState({ list: newList})
-   // this.trackCompleted()
+    let state = this.state
+    state.list = this.state.list.filter(elem => elem.id !== id)
+    state = this.trackCompleted(state)
+    this.setState({ state })
   }
 
 

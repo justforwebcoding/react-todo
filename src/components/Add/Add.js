@@ -7,19 +7,19 @@ class Add extends Component {
         id: '',
         value: '',
         status: true,
-    }
+    };
 
     handleChange = (e) => {
         this.setState({ value: e.target.value })
-    }
+    };
 
     addTaskToList = (e) => {
-        this.props.addTask({ 
+        this.props.addTask({
             id: +new Date(),
             value: this.state.value,
             status: true,
          })
-    }
+    };
 
     render() {
         let { value } = this.state
